@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImitationShop.Api", "Imitat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImitationShop.Model", "ImitationShop.Model\ImitationShop.Model.csproj", "{478A1744-A213-4FEB-83FA-E66EC606B6BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImitationShop.Repository", "ImitationShop.Repository\ImitationShop.Repository.csproj", "{927DFDE4-9E29-47F7-BFD6-174FFD9D0047}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{478A1744-A213-4FEB-83FA-E66EC606B6BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{478A1744-A213-4FEB-83FA-E66EC606B6BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{478A1744-A213-4FEB-83FA-E66EC606B6BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{927DFDE4-9E29-47F7-BFD6-174FFD9D0047}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{927DFDE4-9E29-47F7-BFD6-174FFD9D0047}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{927DFDE4-9E29-47F7-BFD6-174FFD9D0047}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{927DFDE4-9E29-47F7-BFD6-174FFD9D0047}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
