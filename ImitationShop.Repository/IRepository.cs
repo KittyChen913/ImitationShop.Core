@@ -1,7 +1,6 @@
-﻿namespace ImitationShop.Repository
+﻿namespace ImitationShop.Repository;
+
+public interface IRepository<TModel>
 {
-    public interface IRepository<TModel>
-    {
-        List<TModel> Query();
-    }
+    List<TModel> Query();
 }

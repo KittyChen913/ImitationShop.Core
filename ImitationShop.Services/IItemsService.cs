@@ -1,7 +1,6 @@
-﻿namespace ImitationShop.Services
+﻿namespace ImitationShop.Services;
+
+public interface IItemsService
 {
-    public interface IItemsService
-    {
-        List<Item> GetItemList();
-    }
+    List<Item> GetItemList();
 }
