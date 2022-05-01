@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImitationShop.Repository", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImitationShop.Services", "ImitationShop.Services\ImitationShop.Services.csproj", "{36DC8208-8E43-4A92-9550-571453CA6428}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImitationShop.EFCore", "ImitationShop.EFCore\ImitationShop.EFCore.csproj", "{89D0555F-E7DA-4B2B-A3F6-6F53A4AE152D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImitationShop.EFCore", "ImitationShop.EFCore\ImitationShop.EFCore.csproj", "{89D0555F-E7DA-4B2B-A3F6-6F53A4AE152D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImitationShop.Common", "ImitationShop.Common\ImitationShop.Common.csproj", "{6BEC3A1A-B3AE-436B-B9FF-BC0558BF0A81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{89D0555F-E7DA-4B2B-A3F6-6F53A4AE152D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89D0555F-E7DA-4B2B-A3F6-6F53A4AE152D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89D0555F-E7DA-4B2B-A3F6-6F53A4AE152D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BEC3A1A-B3AE-436B-B9FF-BC0558BF0A81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BEC3A1A-B3AE-436B-B9FF-BC0558BF0A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BEC3A1A-B3AE-436B-B9FF-BC0558BF0A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BEC3A1A-B3AE-436B-B9FF-BC0558BF0A81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
