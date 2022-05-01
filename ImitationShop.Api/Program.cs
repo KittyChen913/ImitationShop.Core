@@ -1,3 +1,7 @@
+using ImitationShop.EFCore.Context;
+using ImitationShop.Repository;
+using ImitationShop.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +10,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IItemsService, ItemsService>();
+builder.Services.AddScoped<ItemsRepository, ItemsRepository>();
+builder.Services.AddScoped<ImitationShopDBContext>();
 
 var app = builder.Build();
 
