@@ -1,8 +1,4 @@
-﻿using ImitationShop.EFCore.DbModels;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-
-namespace ImitationShop.EFCore.Context;
+﻿namespace ImitationShop.EFCore.Context;
 
 public partial class ImitationShopDBContext : DbContext
 {

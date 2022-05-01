@@ -1,7 +1,3 @@
-using ImitationShop.EFCore.Context;
-using ImitationShop.Repository;
-using ImitationShop.Services;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

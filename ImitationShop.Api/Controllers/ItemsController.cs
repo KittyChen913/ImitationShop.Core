@@ -1,8 +1,4 @@
-﻿using ImitationShop.EFCore.DbModels;
-using ImitationShop.Services;
-using Microsoft.AspNetCore.Mvc;
-
-namespace ImitationShop.Api.Controllers;
+﻿namespace ImitationShop.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

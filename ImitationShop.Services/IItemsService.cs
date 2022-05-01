@@ -1,6 +1,4 @@
-﻿using ImitationShop.EFCore.DbModels;
-
-namespace ImitationShop.Services
+﻿namespace ImitationShop.Services
 {
     public interface IItemsService
     {
