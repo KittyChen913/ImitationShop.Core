@@ -9,7 +9,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IItemsService, ItemsService>();
 builder.Services.AddScoped<ItemsRepository, ItemsRepository>();
-builder.Services.AddScoped<ImitationShopDBContext>();
+
+builder.Services.AddDbContext<ImitationShopDBContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("ImitationShopDB")));
 
 var app = builder.Build();
 

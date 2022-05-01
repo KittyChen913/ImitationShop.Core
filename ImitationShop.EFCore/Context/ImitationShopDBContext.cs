@@ -20,7 +20,6 @@ public partial class ImitationShopDBContext : DbContext
     // 連接數據庫時要做的一些配置
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(configuration.GetConnectionString("ImitationShopDB"));
     }
 
     // 配置實體跟數據庫彼此之間的映射關係
