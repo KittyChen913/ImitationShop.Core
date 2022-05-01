@@ -7,10 +7,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IItemsService, ItemsService>();
-builder.Services.AddScoped<ItemsRepository, ItemsRepository>();
-
 builder.Services.AddDbContext<ImitationShopDBContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("ImitationShopDB")));
+
+// Autofac Register
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()); 
+
+var libraryAssemblies = Directory.EnumerateFiles(AppDomain.CurrentDomain.BaseDirectory, "ImitationShop.*.dll", 
+    SearchOption.AllDirectories).Select(Assembly.LoadFrom);
+
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
+    containerBuilder.RegisterAssemblyTypes(libraryAssemblies.ToArray()).AsImplementedInterfaces().InstancePerLifetimeScope()
+);
+
 
 var app = builder.Build();
 
