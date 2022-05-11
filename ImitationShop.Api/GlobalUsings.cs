@@ -1,5 +1,6 @@
 ﻿global using Autofac;
 global using Autofac.Extensions.DependencyInjection;
+global using ImitationShop.Common.Extensions;
 global using ImitationShop.EFCore.Context;
 global using ImitationShop.EFCore.DbModels;
 global using ImitationShop.Services;

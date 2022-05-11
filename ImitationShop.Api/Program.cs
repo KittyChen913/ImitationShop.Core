@@ -7,12 +7,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.SetCorsPolicy(builder.Configuration);
+
 builder.Services.AddDbContext<ImitationShopDBContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("ImitationShopDB")));
 
 // Autofac Register
-builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()); 
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
-var libraryAssemblies = Directory.EnumerateFiles(AppDomain.CurrentDomain.BaseDirectory, "ImitationShop.*.dll", 
+var libraryAssemblies = Directory.EnumerateFiles(AppDomain.CurrentDomain.BaseDirectory, "ImitationShop.*.dll",
     SearchOption.AllDirectories).Select(Assembly.LoadFrom);
 
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
@@ -30,6 +32,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 

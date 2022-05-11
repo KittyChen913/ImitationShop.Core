@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ImitationShop.Common\ImitationShop.Common.csproj" />
     <ProjectReference Include="..\ImitationShop.Repository\ImitationShop.Repository.csproj" />
     <ProjectReference Include="..\ImitationShop.Services\ImitationShop.Services.csproj" />
   </ItemGroup>
