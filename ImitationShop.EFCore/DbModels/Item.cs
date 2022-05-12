@@ -1,8 +1,15 @@
-﻿namespace ImitationShop.EFCore.DbModels;
+﻿using System;
+using System.Collections.Generic;
 
-public partial class Item
+namespace ImitationShop.EFCore.DbModels
 {
-    public int ItemId { get; set; }
-    public string ItemName { get; set; } = null!;
-    public decimal? ItemPrice { get; set; }
+    public partial class Item
+    {
+        public int ItemId { get; set; }
+        public string ItemName { get; set; } = null!;
+        public decimal Price { get; set; }
+        public int Amount { get; set; }
+        public DateTime CreateDate { get; set; }
+        public string? Description { get; set; }
+    }
 }
