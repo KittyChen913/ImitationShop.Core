@@ -16,4 +16,10 @@ public class ItemsController : ControllerBase
     {
         return Ok(itemsService.GetItemList());
     }
+
+    [HttpGet("{itemId}")]
+    public ActionResult<Item> Get(int itemId)
+    {
+        return Ok(itemsService.GetItem(itemId));
+    }
 }

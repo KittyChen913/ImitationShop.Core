@@ -13,4 +13,10 @@ public class ItemsService : IItemsService
     {
         return itemRepository.Query();
     }
+
+    public Item GetItem(int itemId)
+    {
+        return itemRepository.QueryById(itemId);
+    }
+
 }
