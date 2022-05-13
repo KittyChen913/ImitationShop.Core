@@ -22,6 +22,8 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
     containerBuilder.RegisterAssemblyTypes(libraryAssemblies.ToArray()).AsImplementedInterfaces().InstancePerLifetimeScope()
 );
 
+builder.Host.UseNLog();
+
 
 var app = builder.Build();
 

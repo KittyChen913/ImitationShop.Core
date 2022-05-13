@@ -6,4 +6,5 @@ global using ImitationShop.EFCore.DbModels;
 global using ImitationShop.Services;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
+global using NLog.Web;
 global using System.Reflection;
