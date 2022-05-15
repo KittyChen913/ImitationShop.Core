@@ -16,6 +16,6 @@ public class ItemsRepository : IRepository<Item>
 
     public Item QueryById(object id)
     {
-        return dbContext.Items.Where(i => i.ItemId == Convert.ToInt32(id)).First();
+        return dbContext.Items.First(i => i.ItemId == Convert.ToInt32(id));
     }
 }
