@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ImitationShop.Common\ImitationShop.Common.csproj" />
     <ProjectReference Include="..\ImitationShop.EFCore\ImitationShop.EFCore.csproj" />
+    <ProjectReference Include="..\ImitationShop.Model\ImitationShop.Model.csproj" />
     <ProjectReference Include="..\ImitationShop.Repository\ImitationShop.Repository.csproj" />
   </ItemGroup>
 
