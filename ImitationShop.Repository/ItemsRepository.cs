@@ -9,13 +9,13 @@ public class ItemsRepository : IRepository<Item>
         this.dbContext = dbContext;
     }
 
-    public List<Item> Query()
+    public async Task<List<Item>> Query()
     {
-        return dbContext.Items.ToList();
+        return await dbContext.Items.ToListAsync();
     }
 
-    public Item QueryById(object id)
+    public async Task<Item> QueryById(object id)
     {
-        return dbContext.Items.First(i => i.ItemId == Convert.ToInt32(id));
+        return await dbContext.Items.FirstAsync(i => i.ItemId == Convert.ToInt32(id));
     }
 }

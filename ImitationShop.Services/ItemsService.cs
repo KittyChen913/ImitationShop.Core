@@ -9,14 +9,13 @@ public class ItemsService : IItemsService
         this.itemRepository = itemRepository;
     }
 
-    public List<Item> GetItemList()
+    public async Task<List<Item>> GetItemList()
     {
-        return itemRepository.Query();
+        return await itemRepository.Query();
     }
 
-    public Item GetItem(int itemId)
+    public async Task<Item> GetItem(int itemId)
     {
-        return itemRepository.QueryById(itemId);
+        return await itemRepository.QueryById(itemId);
     }
-
 }

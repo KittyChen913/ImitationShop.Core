@@ -12,13 +12,13 @@ public class ItemsController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<List<Item>> Get()
+    public async Task<ActionResult<List<Item>>> Get()
     {
         return Ok(itemsService.GetItemList());
     }
 
     [HttpGet("{itemId}")]
-    public ActionResult<Item> Get(int itemId)
+    public async Task<ActionResult<Item>> Get(int itemId)
     {
         return Ok(itemsService.GetItem(itemId));
     }

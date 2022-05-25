@@ -2,6 +2,6 @@
 
 public interface IRepository<TModel>
 {
-    List<TModel> Query();
-    TModel QueryById(object id);
+    Task<List<TModel>> Query();
+    Task<TModel> QueryById(object id);
 }

@@ -2,7 +2,6 @@
 
 public interface IItemsService
 {
-    List<Item> GetItemList();
-
-    Item GetItem(int itemId);
+    Task<List<Item>> GetItemList();
+    Task<Item> GetItem(int itemId);
 }
