@@ -13,7 +13,7 @@ public class AuthService : IAuthService
 
     public async Task<int> StorageUser(UserRegisterModel model)
     {
-        var hashResult = hashHelper.ComputeHash(model.Password!);
+        var hashResult = hashHelper.GetHash(model.Password!);
         var password = CombinedPassword(hashResult.Hashed!, hashResult.Salt!);
 
         var userId = await userService.AddUser(new User

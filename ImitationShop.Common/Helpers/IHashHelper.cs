@@ -2,5 +2,6 @@
 
 public interface IHashHelper
 {
-    HashModel ComputeHash(string password);
+    HashModel GetHash(string password);
+    public byte[] ComputeHash(string password, byte[] salt);
 }

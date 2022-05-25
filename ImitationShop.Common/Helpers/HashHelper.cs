@@ -4,14 +4,19 @@ public class HashHelper : IHashHelper
 {
     private readonly int Iterations = 50000;
 
-    public HashModel ComputeHash(string password)
+    public HashModel GetHash(string password)
     {
         byte[] salt = GenerateSalt();
+        byte[] hashed = ComputeHash(password, salt);
+        return new HashModel { Salt = salt, Hashed = hashed };
+    }
+
+    public byte[] ComputeHash(string password, byte[] salt)
+    {
         var rfc289 = new Rfc2898DeriveBytes(password, salt, Iterations);
         var hashed = rfc289.GetBytes(32);
         Console.WriteLine($"hash: {Convert.ToBase64String(hashed)}");
-
-        return new HashModel { Salt = salt, Hashed = hashed };
+        return hashed;
     }
 
     private byte[] GenerateSalt()
