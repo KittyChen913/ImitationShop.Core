@@ -24,4 +24,18 @@ public class AuthController : ControllerBase
         var userId = await authService.StorageUser(model);
         return Ok(userId);
     }
+
+    [HttpPost("UserLogin")]
+    public async Task<ActionResult<User>> UserLogin(UserLoginModel model)
+    {
+        var userInfo = await userService.GetUserByName(model.UserName!);
+
+        if (userInfo == null)
+            return BadRequest("User does not exist.");
+
+        if (!authService.VerifyPassword(model.Password!, userInfo.Password))
+            return BadRequest("Password verification failed. Please try again.");
+
+        return Ok(userInfo);
+    }
 }

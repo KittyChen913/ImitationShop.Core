@@ -27,6 +27,15 @@ public class AuthService : IAuthService
         return userId;
     }
 
+    public bool VerifyPassword(string inputPassword, byte[] userPassword)
+    {
+        var salt = SplitPasswordGetSalt(userPassword);
+        var hash = SplitPasswordGetHash(userPassword);
+        var inputHashResult = hashHelper.ComputeHash(inputPassword, salt);
+
+        return inputHashResult.SequenceEqual(hash);
+    }
+
     private byte[] CombinedPassword(byte[] hash, byte[] salt)
     {
         var password = new byte[hash.Length + salt.Length];
@@ -35,5 +44,15 @@ public class AuthService : IAuthService
         Buffer.BlockCopy(hash, 0, password, salt.Length, hash.Length);
 
         return password;
+    }
+
+    private byte[] SplitPasswordGetSalt(byte[] password)
+    {
+        return password.Take(16).ToArray();
+    }
+
+    private byte[] SplitPasswordGetHash(byte[] password)
+    {
+        return password.Skip(16).Take(32).ToArray();
     }
 }
