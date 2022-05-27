@@ -13,4 +13,7 @@ public enum ErrorCodeEnum
 
     [Description("U0003")]
     PasswordError,
+
+    [Description("S9999")]
+    OtherSystemError
 }

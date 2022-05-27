@@ -36,6 +36,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseMiddleware<RequestRewindMiddleware>();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
 app.UseCors();
 
 app.UseAuthorization();
