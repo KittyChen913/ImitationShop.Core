@@ -4,5 +4,7 @@ global using Microsoft.AspNetCore.Mvc.Filters;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
+global using System.ComponentModel;
+global using System.Reflection;
 global using System.Security.Cryptography;
 global using System.Text.Json;

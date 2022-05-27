@@ -14,28 +14,54 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("UserRegister")]
-    public async Task<ActionResult<int>> UserRegister(UserRegisterModel model)
+    public async Task<ActionResult<BaseResponseModel<int>>> UserRegister(BaseRequestModel<UserRegisterModel> model)
     {
-        var userInfo = await userService.GetUserByName(model.UserName!);
+        var userInfo = await userService.GetUserByName(model.Data!.UserName!);
 
         if (userInfo != null)
-            return BadRequest("This user name already exists.");
+            return BadRequest(new BaseResponseModel<object>
+            {
+                RequestId = model.RequestId,
+                ErrorCode = ErrorCodeEnum.UserAlreadyExist.ToDescription(),
+                Data = 0
+            });
 
-        var userId = await authService.StorageUser(model);
-        return Ok(userId);
+        var userId = await authService.StorageUser(model.Data!);
+
+        return Ok(new BaseResponseModel<int>
+        {
+            RequestId = model.RequestId,
+            ErrorCode = ErrorCodeEnum.Success.ToDescription(),
+            Data = userId
+        });
     }
 
     [HttpPost("UserLogin")]
-    public async Task<ActionResult<User>> UserLogin(UserLoginModel model)
+    public async Task<ActionResult<BaseResponseModel<User>>> UserLogin(BaseRequestModel<UserLoginModel> model)
     {
-        var userInfo = await userService.GetUserByName(model.UserName!);
+        var userInfo = await userService.GetUserByName(model.Data!.UserName!);
 
         if (userInfo == null)
-            return BadRequest("User does not exist.");
+            return BadRequest(new BaseResponseModel<object>
+            {
+                RequestId = model.RequestId,
+                ErrorCode = ErrorCodeEnum.UserNotExist.ToDescription(),
+                Data = null
+            });
 
-        if (!authService.VerifyPassword(model.Password!, userInfo.Password))
-            return BadRequest("Password verification failed. Please try again.");
+        if (!authService.VerifyPassword(model.Data!.Password!, userInfo.Password))
+            return BadRequest(new BaseResponseModel<object>
+            {
+                RequestId = model.RequestId,
+                ErrorCode = ErrorCodeEnum.UserNotExist.ToDescription(),
+                Data = null
+            });
 
-        return Ok(userInfo);
+        return Ok(new BaseResponseModel<User>
+        {
+            RequestId = model.RequestId,
+            ErrorCode = ErrorCodeEnum.Success.ToDescription(),
+            Data = userInfo
+        });
     }
 }
