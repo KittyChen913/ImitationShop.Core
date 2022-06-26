@@ -37,7 +37,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("UserLogin")]
-    public async Task<ActionResult<BaseResponseModel<User>>> UserLogin(BaseRequestModel<UserLoginModel> model)
+    public async Task<ActionResult<BaseResponseModel<UserInfoModel>>> UserLogin(BaseRequestModel<UserLoginModel> model)
     {
         var userInfo = await userService.GetUserByName(model.Data!.UserName!);
 
@@ -57,11 +57,17 @@ public class AuthController : ControllerBase
                 Data = null
             });
 
-        return Ok(new BaseResponseModel<User>
+        return Ok(new BaseResponseModel<UserInfoModel>
         {
             RequestId = model.RequestId,
             ErrorCode = ErrorCodeEnum.Success.ToDescription(),
-            Data = userInfo
+            Data = new UserInfoModel
+            {
+                UserName = userInfo.UserName,
+                CreateDate = userInfo.CreateDate,
+                MailAddress = userInfo.MailAddress,
+                UserId = userInfo.UserId
+            }
         });
     }
 }
