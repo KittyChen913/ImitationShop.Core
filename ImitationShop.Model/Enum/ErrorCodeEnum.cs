@@ -12,7 +12,7 @@ public enum ErrorCodeEnum
     UserNotExist,
 
     [Description("U0003")]
-    PasswordError,
+    IncorrectPassword,
 
     [Description("S9999")]
     OtherSystemError

@@ -53,7 +53,7 @@ public class AuthController : ControllerBase
             return BadRequest(new BaseResponseModel<object>
             {
                 RequestId = model.RequestId,
-                ErrorCode = ErrorCodeEnum.UserNotExist.ToDescription(),
+                ErrorCode = ErrorCodeEnum.IncorrectPassword.ToDescription(),
                 Data = null
             });
 
