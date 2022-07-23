@@ -24,6 +24,10 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 
 builder.Host.UseNLog();
 
+// Set JWT Token Model
+builder.Services.Configure<JwtTokenModel>(builder.Configuration.GetSection("JwtSettings"));
+
+
 
 var app = builder.Build();
 

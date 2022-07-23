@@ -6,4 +6,5 @@ public class UserInfoModel
     public string? UserName { get; set; }
     public DateTime CreateDate { get; set; }
     public string? MailAddress { get; set; }
+    public string Token { get; set; }
 }

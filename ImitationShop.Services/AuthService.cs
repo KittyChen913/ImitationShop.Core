@@ -2,11 +2,13 @@
 
 public class AuthService : IAuthService
 {
+    private readonly JwtTokenModel _jwtSettings;
     private readonly IHashHelper hashHelper;
     private readonly IUserService userService;
 
-    public AuthService(IHashHelper hashHelper, IUserService userService)
+    public AuthService(IHashHelper hashHelper, IUserService userService, IOptions<JwtTokenModel> options)
     {
+        _jwtSettings = options.Value;
         this.hashHelper = hashHelper;
         this.userService = userService;
     }
@@ -34,6 +36,34 @@ public class AuthService : IAuthService
         var inputHashResult = hashHelper.ComputeHash(inputPassword, salt);
 
         return inputHashResult.SequenceEqual(hash);
+    }
+
+    public string IssueJwtToken(TokenInfoModel model)
+    {
+        var claims = new List<Claim>
+        {
+            new (JwtRegisteredClaimNames.Sub, !string.IsNullOrWhiteSpace(model.UserName)? model.UserName : string.Empty),
+            new (JwtRegisteredClaimNames.Iss, _jwtSettings.Issuer!),
+            new (JwtRegisteredClaimNames.Exp, DateTime.Now.AddHours(_jwtSettings.Expires).ToString(CultureInfo.InvariantCulture)),
+            new (JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        };
+
+        var jwtKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtSettings.Secret!));
+        var signingCredentials = new SigningCredentials(jwtKey, SecurityAlgorithms.HmacSha256Signature);
+
+        var tokenDescriptor = new SecurityTokenDescriptor
+        {
+            Issuer = _jwtSettings.Issuer,
+            Subject = new ClaimsIdentity(claims),
+            Expires = DateTime.Now.AddHours(_jwtSettings.Expires),
+            SigningCredentials = signingCredentials
+        };
+
+        var jwtHandler = new JwtSecurityTokenHandler();
+        var jwtToken = jwtHandler.CreateToken(tokenDescriptor);
+        var serializeJwtToken = jwtHandler.WriteToken(jwtToken);
+
+        return serializeJwtToken;
     }
 
     private byte[] CombinedPassword(byte[] hash, byte[] salt)

@@ -2,3 +2,9 @@
 global using ImitationShop.EFCore.DbModels;
 global using ImitationShop.Model.Models;
 global using ImitationShop.Repository;
+global using Microsoft.Extensions.Options;
+global using Microsoft.IdentityModel.Tokens;
+global using System.Globalization;
+global using System.IdentityModel.Tokens.Jwt;
+global using System.Security.Claims;
+global using System.Text;

@@ -57,6 +57,8 @@ public class AuthController : ControllerBase
                 Data = null
             });
 
+        var apiToken = authService.IssueJwtToken(new TokenInfoModel { UserName = userInfo.UserName });
+
         return Ok(new BaseResponseModel<UserInfoModel>
         {
             RequestId = model.RequestId,
@@ -66,7 +68,8 @@ public class AuthController : ControllerBase
                 UserName = userInfo.UserName,
                 CreateDate = userInfo.CreateDate,
                 MailAddress = userInfo.MailAddress,
-                UserId = userInfo.UserId
+                UserId = userInfo.UserId,
+                Token = apiToken
             }
         });
     }
