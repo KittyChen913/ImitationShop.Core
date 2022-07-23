@@ -26,6 +26,7 @@ builder.Host.UseNLog();
 
 // Set JWT Token Model
 builder.Services.Configure<JwtTokenModel>(builder.Configuration.GetSection("JwtSettings"));
+builder.Services.AddJwtSetup(builder.Configuration);
 
 
 
@@ -45,6 +46,7 @@ app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseCors();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
