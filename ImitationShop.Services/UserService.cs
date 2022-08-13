@@ -2,21 +2,21 @@
 
 public class UserService : IUserService
 {
-    private readonly IRepository<User> userRepository;
+    private readonly IUserRepository userRepository;
 
-    public UserService(IRepository<User> userRepository)
+    public UserService(IUserRepository userRepository)
     {
         this.userRepository = userRepository;
     }
 
     public async Task<int> AddUser(User model)
     {
-        var userId = await userRepository.Add(model);
-        return userId;
+        var userInfo = await userRepository.Add(model);
+        return userInfo.UserId;
     }
 
     public async Task<User> GetUserByName(string userName)
     {
-        return await userRepository.QueryByString(userName);
+        return await userRepository.QueryByUserName(userName);
     }
 }

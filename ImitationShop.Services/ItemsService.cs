@@ -2,9 +2,9 @@
 
 public class ItemsService : IItemsService
 {
-    private readonly IRepository<Item> itemRepository;
+    private readonly IBaseRepository<Item> itemRepository;
 
-    public ItemsService(IRepository<Item> itemRepository)
+    public ItemsService(IBaseRepository<Item> itemRepository)
     {
         this.itemRepository = itemRepository;
     }

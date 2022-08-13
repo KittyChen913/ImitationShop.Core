@@ -1,34 +1,13 @@
 ﻿namespace ImitationShop.Repository;
 
-public class UserRepository : IRepository<User>
+public class UserRepository : BaseRepository<User>, IUserRepository
 {
-    private readonly ImitationShopDBContext dBContext;
+    private readonly ImitationShopDBContext dbContext;
 
-    public UserRepository(ImitationShopDBContext dBContext)
+    public UserRepository(ImitationShopDBContext dbContext) : base(dbContext)
     {
-        this.dBContext = dBContext;
+        this.dbContext = dbContext;
     }
 
-    public async Task<int> Add(User model)
-    {
-        await dBContext.Users.AddAsync(model);
-        dBContext.SaveChanges();
-
-        return model.UserId;
-    }
-
-    public Task<IEnumerable<User>> Query()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<User> QueryById(object id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task<User> QueryByString(string userName)
-    {
-        return await dBContext.Users.FirstOrDefaultAsync(user => user.UserName.Equals(userName));
-    }
+    public async Task<User> QueryByUserName(string userName) => await dbContext.Users.FirstOrDefaultAsync(user => user.UserName.Equals(userName));
 }
