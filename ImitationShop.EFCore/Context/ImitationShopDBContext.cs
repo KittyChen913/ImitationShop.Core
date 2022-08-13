@@ -18,6 +18,7 @@ namespace ImitationShop.EFCore.Context
         }
 
         public virtual DbSet<Item> Items { get; set; } = null!;
+        public virtual DbSet<Store> Stores { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -31,6 +32,14 @@ namespace ImitationShop.EFCore.Context
                 entity.Property(e => e.ItemName).HasMaxLength(50);
 
                 entity.Property(e => e.Price).HasColumnType("decimal(18, 0)");
+            });
+
+            modelBuilder.Entity<Store>(entity =>
+            {
+                entity.ToTable("Store");
+
+                entity.HasIndex(e => new { e.UserId, e.ItemId }, "IX_UserIdItemId")
+                    .IsUnique();
             });
 
             modelBuilder.Entity<User>(entity =>
