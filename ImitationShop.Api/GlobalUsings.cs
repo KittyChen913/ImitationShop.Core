@@ -8,6 +8,7 @@ global using ImitationShop.EFCore.DbModels;
 global using ImitationShop.Model.Enum;
 global using ImitationShop.Model.Models;
 global using ImitationShop.Services;
+global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using NLog.Web;
