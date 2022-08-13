@@ -9,7 +9,7 @@ public class ItemsService : IItemsService
         this.itemRepository = itemRepository;
     }
 
-    public async Task<List<Item>> GetItemList()
+    public async Task<IEnumerable<Item>> GetItemList()
     {
         return await itemRepository.Query();
     }

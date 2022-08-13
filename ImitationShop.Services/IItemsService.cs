@@ -2,6 +2,6 @@
 
 public interface IItemsService
 {
-    Task<List<Item>> GetItemList();
+    Task<IEnumerable<Item>> GetItemList();
     Task<Item> GetItem(int itemId);
 }

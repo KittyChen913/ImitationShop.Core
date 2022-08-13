@@ -14,14 +14,14 @@ public class ItemsRepository : IRepository<Item>
         throw new NotImplementedException();
     }
 
-    public async Task<List<Item>> Query()
+    public async Task<IEnumerable<Item>> Query()
     {
         return await dbContext.Items.ToListAsync();
     }
 
-    public async Task<Item> QueryById(object id)
+    public async Task<Item> QueryById(object itemId)
     {
-        return await dbContext.Items.FirstAsync(i => i.ItemId == Convert.ToInt32(id));
+        return await dbContext.Items.FirstAsync(i => i.ItemId == Convert.ToInt32(itemId));
     }
 
     public Task<Item> QueryByString(string searchValue)

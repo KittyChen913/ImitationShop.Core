@@ -12,7 +12,7 @@ public class ItemsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<Item>>> Get()
+    public async Task<ActionResult<IEnumerable<Item>>> Get()
     {
         return Ok(await itemsService.GetItemList());
     }

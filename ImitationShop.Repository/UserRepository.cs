@@ -17,7 +17,7 @@ public class UserRepository : IRepository<User>
         return model.UserId;
     }
 
-    public Task<List<User>> Query()
+    public Task<IEnumerable<User>> Query()
     {
         throw new NotImplementedException();
     }
