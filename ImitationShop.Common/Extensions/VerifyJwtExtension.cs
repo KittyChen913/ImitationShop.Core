@@ -17,7 +17,7 @@ public static class VerifyJwtExtension
                     ValidIssuer = jwtSettings.Issuer,
                     ValidateAudience = false,
                     ValidateLifetime = true,
-                    ValidateIssuerSigningKey = false,
+                    ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret!))
                 };
             });
