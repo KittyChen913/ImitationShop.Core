@@ -18,4 +18,17 @@ public class ItemsService : IItemsService
     {
         return await itemRepository.QueryById(itemId);
     }
+
+    public async Task<int> AddItem(AddItemModel model)
+    {
+        var result = await itemRepository.Add(new Item
+        {
+            ItemName = model.ItemName,
+            Price = (decimal)model.Price,
+            Amount = (int)model.Amount,
+            CreateDate = DateTime.Now,
+            Description = model.Description
+        });
+        return result.ItemId;
+    }
 }

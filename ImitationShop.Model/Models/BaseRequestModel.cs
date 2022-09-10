@@ -2,6 +2,7 @@
 
 public class BaseRequestModel<T>
 {
+    [Required]
     public string? RequestId { get; set; }
     public T? Data { get; set; }
 }

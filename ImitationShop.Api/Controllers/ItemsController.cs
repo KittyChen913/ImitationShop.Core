@@ -22,4 +22,17 @@ public class ItemsController : ControllerBase
     {
         return Ok(await itemsService.GetItem(itemId));
     }
+
+    [HttpPost]
+    public async Task<ActionResult<BaseResponseModel<int>>> Post(BaseRequestModel<AddItemModel> model)
+    {
+        var itemId = await itemsService.AddItem(model.Data);
+
+        return Ok(new BaseResponseModel<int>
+        {
+            RequestId = model.RequestId,
+            ErrorCode = ErrorCodeEnum.Success.ToDescription(),
+            Data = itemId
+        });
+    }
 }
