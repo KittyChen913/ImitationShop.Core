@@ -41,6 +41,11 @@ public class ExceptionHandlingMiddleware
 
         switch (exception)
         {
+            case ValidationException ex:
+                errorResponse.ErrorCode = ErrorCodeEnum.ParameterIsIncorrect.ToDescription();
+                errorResponse.ErrorMessage = ex.Message;
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
+                break;
             case Exception ex:
                 errorResponse.ErrorCode = ErrorCodeEnum.OtherSystemError.ToDescription();
                 response.StatusCode = (int)HttpStatusCode.BadRequest;

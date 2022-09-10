@@ -14,6 +14,9 @@ public enum ErrorCodeEnum
     [Description("U0003")]
     IncorrectPassword,
 
+    [Description("P0001")]
+    ParameterIsIncorrect,
+
     [Description("S9999")]
     OtherSystemError
 }

@@ -12,6 +12,8 @@ builder.Services.SetCorsPolicy(builder.Configuration);
 
 builder.Services.AddDbContext<ImitationShopDBContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("ImitationShopDB")));
 
+builder.Services.SetModelValidation();
+
 // Autofac Register
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 

@@ -11,6 +11,7 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
 global using Microsoft.IdentityModel.Tokens;
 global using System.ComponentModel;
+global using System.ComponentModel.DataAnnotations;
 global using System.Net;
 global using System.Reflection;
 global using System.Security.Cryptography;
