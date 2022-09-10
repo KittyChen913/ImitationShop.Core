@@ -58,4 +58,10 @@ public class ItemsController : ControllerBase
             });
         }
     }
+
+    [HttpDelete("{itemId}")]
+    public async Task<IActionResult> Delete(int itemId)
+    {
+        return Ok(await itemsService.DeleteItem(itemId));
+    }
 }

@@ -39,4 +39,14 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
         var keyName = dbContext.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey().Properties.Single().Name;
         return (int)entity.GetType().GetProperty(keyName).GetValue(entity, null);
     }
+
+    public async Task<bool> Delete(object primaryKeyId)
+    {
+        var entity = await entities.FindAsync(primaryKeyId);
+        if (entity != null)
+        {
+            dbContext.Remove(entity);
+        }
+        return (await dbContext.SaveChangesAsync()) > 0;
+    }
 }

@@ -36,4 +36,9 @@ public class ItemsService : IItemsService
     {
         return await itemRepository.Update(model);
     }
+
+    public async Task<bool> DeleteItem(int itemId)
+    {
+        return await itemRepository.Delete(itemId);
+    }
 }
