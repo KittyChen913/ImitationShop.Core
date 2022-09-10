@@ -35,4 +35,27 @@ public class ItemsController : ControllerBase
             Data = itemId
         });
     }
+
+    [HttpPut("{itemId}")]
+    public async Task<IActionResult> Put(int itemId, BaseRequestModel<Item> model)
+    {
+        if (await itemsService.UpdateItem(model.Data))
+        {
+            return Ok(new BaseResponseModel<object>
+            {
+                RequestId = model.RequestId,
+                ErrorCode = ErrorCodeEnum.Success.ToDescription(),
+                Data = itemId
+            });
+        }
+        else
+        {
+            return BadRequest(new BaseResponseModel<object>
+            {
+                RequestId = model.RequestId,
+                ErrorCode = ErrorCodeEnum.OtherSystemError.ToDescription(),
+                ErrorMessage = "This item update failed."
+            });
+        }
+    }
 }

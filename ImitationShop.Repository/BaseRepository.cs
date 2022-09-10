@@ -21,4 +21,22 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
         dbContext.SaveChanges();
         return model;
     }
+
+    public async Task<bool> Update(TEntity model)
+    {
+        var primaryKeyId = GetPrimaryKeyValue(model);
+
+        var entity = await entities.FindAsync(primaryKeyId);
+        if (entity != null)
+        {
+            dbContext.Entry(entity).CurrentValues.SetValues(model);
+        }
+        return (await dbContext.SaveChangesAsync()) > 0;
+    }
+
+    private int GetPrimaryKeyValue(TEntity entity)
+    {
+        var keyName = dbContext.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey().Properties.Single().Name;
+        return (int)entity.GetType().GetProperty(keyName).GetValue(entity, null);
+    }
 }

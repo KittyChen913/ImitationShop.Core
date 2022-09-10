@@ -31,4 +31,9 @@ public class ItemsService : IItemsService
         });
         return result.ItemId;
     }
+
+    public async Task<bool> UpdateItem(Item model)
+    {
+        return await itemRepository.Update(model);
+    }
 }
