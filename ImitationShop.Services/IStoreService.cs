@@ -3,4 +3,5 @@
 public interface IStoreService
 {
     Task<IEnumerable<Store>> GetStoreItemList(int userId);
+    Task<int> AddStoreItem(Store model);
 }

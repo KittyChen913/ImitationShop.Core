@@ -6,15 +6,34 @@
 public class StoreController : ControllerBase
 {
     private readonly IStoreService storeService;
+    private readonly IItemsService itemsService;
 
-    public StoreController(IStoreService storeService)
+    public StoreController(IStoreService storeService, IItemsService itemsService)
     {
         this.storeService = storeService;
+        this.itemsService = itemsService;
     }
 
     [HttpGet("{userId}")]
     public async Task<ActionResult<IEnumerable<Store>>> Get(int userId)
     {
         return Ok(await storeService.GetStoreItemList(userId));
+    }
+
+
+    [HttpPost]
+    [Route("AddStoreItem")]
+    public async Task<ActionResult<BaseResponseModel<int>>> AddStoreItem(BaseRequestModel<AddStoreItemModel> model)
+    {
+        var itemId = await itemsService.AddItem(model.Data.Item);
+        model.Data.StoreMappingInfo.ItemId = itemId;
+        var storeId = await storeService.AddStoreItem(model.Data.StoreMappingInfo);
+
+        return Ok(new BaseResponseModel<int>
+        {
+            RequestId = model.RequestId,
+            ErrorCode = ErrorCodeEnum.Success.ToDescription(),
+            Data = storeId
+        });
     }
 }
