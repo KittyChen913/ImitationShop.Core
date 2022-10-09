@@ -36,4 +36,30 @@ public class StoreController : ControllerBase
             Data = storeId
         });
     }
+
+    [HttpPost]
+    [Route("DeleteStoreItem")]
+    public async Task<ActionResult<BaseResponseModel<int>>> DeleteStoreItem(BaseRequestModel<Store> model)
+    {
+        if (await storeService.DeleteStoreItem(model.Data))
+        {
+            if (await itemsService.DeleteItem(model.Data.ItemId))
+            {
+                return Ok(new BaseResponseModel<int>
+                {
+                    RequestId = model.RequestId,
+                    ErrorCode = ErrorCodeEnum.Success.ToDescription(),
+                    Data = model.Data.ItemId
+                });
+            }
+        }
+
+        return BadRequest(new BaseResponseModel<object>
+        {
+            RequestId = model.RequestId,
+            ErrorCode = ErrorCodeEnum.OtherSystemError.ToDescription(),
+            ErrorMessage = "This item deletion failed, please try again.",
+            Data = 0
+        });
+    }
 }

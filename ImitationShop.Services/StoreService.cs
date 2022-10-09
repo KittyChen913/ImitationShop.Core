@@ -19,4 +19,9 @@ public class StoreService : IStoreService
         var result = await storeRepository.Add(model);
         return result.StoreId;
     }
+
+    public async Task<bool> DeleteStoreItem(Store model)
+    {
+        return await storeRepository.Delete(model.StoreId);
+    }
 }
